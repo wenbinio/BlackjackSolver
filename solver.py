@@ -92,26 +92,50 @@ class BlackjackSolver:
         return results
     
     def _create_hand_with_total(self, target: int, num_cards: int) -> Optional[List[Card]]:
-        """Create a sample hand with given total and card count"""
+        """
+        Create a sample hand with given total and card count
+        Note: This is a simplified helper for strategy table generation
+        """
         if num_cards == 2:
             # Try to create a 2-card hand
-            if target <= 11:
-                cards = [Card(str(target - 1), Suit.SPADES), Card('A', Suit.HEARTS)]
-            elif target <= 20:
+            if target <= 11 and target >= 3:
+                # Use Ace + another card (e.g., A+2=3 to A+10=11)
+                first_val = target - 1
+                if first_val < 2:
+                    first_val = 2
+                if first_val > 10:
+                    first_val = 10
+                cards = [Card(str(first_val), Suit.SPADES), Card('A', Suit.HEARTS)]
+            elif target <= 20 and target >= 12:
                 first = target - 10
-                if first >= 2 and first <= 10:
-                    cards = [Card(str(first), Suit.SPADES), Card('10', Suit.HEARTS)]
-                else:
-                    return None
-            else:
+                if first < 2:
+                    first = 2
+                if first > 10:
+                    first = 10
+                cards = [Card(str(first), Suit.SPADES), Card('10', Suit.HEARTS)]
+            elif target == 21:
                 cards = [Card('10', Suit.SPADES), Card('A', Suit.HEARTS)]
+            else:
+                return None
             return cards
         elif num_cards == 3:
             # Create a 3-card hand
-            if target <= 12:
-                cards = [Card('2', Suit.SPADES), Card('2', Suit.HEARTS), Card(str(target - 4), Suit.CLUBS)]
+            if target <= 12 and target >= 6:
+                remainder = target - 4
+                if remainder < 2:
+                    remainder = 2
+                if remainder > 10:
+                    remainder = 10
+                cards = [Card('2', Suit.SPADES), Card('2', Suit.HEARTS), Card(str(remainder), Suit.CLUBS)]
+            elif target >= 13:
+                remainder = target - 10
+                if remainder < 2:
+                    remainder = 2
+                if remainder > 10:
+                    remainder = 10
+                cards = [Card('5', Suit.SPADES), Card('5', Suit.HEARTS), Card(str(remainder), Suit.CLUBS)]
             else:
-                cards = [Card('5', Suit.SPADES), Card('5', Suit.HEARTS), Card(str(target - 10), Suit.CLUBS)]
+                return None
             return cards
         else:
             # For 4+ cards, distribute evenly

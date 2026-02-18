@@ -92,10 +92,11 @@ class TestHand(unittest.TestCase):
         self.assertEqual(values, [13])
     
     def test_double_ace_two_cards(self):
-        """Test two Aces with 2 cards"""
+        """Test two Aces with 2 cards - possible unique values: 2, 11, 12, 20, 21, 22"""
         hand = Hand([Card('A', Suit.SPADES), Card('A', Suit.HEARTS)])
         values = hand.get_possible_values()
-        # A+A can be: 1+1=2, 1+10=11, 1+11=12, 10+1=11, 10+10=20, 10+11=21, 11+1=12, 11+10=21, 11+11=22
+        # Each Ace can be 1, 10, or 11, giving combinations:
+        # 1+1=2, 1+10=11, 1+11=12, 10+10=20, 10+11=21, 11+11=22
         self.assertIn(2, values)
         self.assertIn(11, values)
         self.assertIn(12, values)

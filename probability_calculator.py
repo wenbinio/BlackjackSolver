@@ -95,6 +95,10 @@ class ProbabilityCalculator:
             return self.calculate_stand_ev(player_hand, dealer_upcard, remaining_cards)
         
         # Limit recursion depth for performance
+        # Depth limit of 2 balances accuracy vs speed:
+        # - Allows evaluating immediate card + one more decision
+        # - Prevents exponential explosion in computation time
+        # - Still provides good strategic guidance for most hands
         if depth > 2:
             return self.calculate_stand_ev(player_hand, dealer_upcard, remaining_cards)
         
@@ -162,7 +166,13 @@ class ProbabilityCalculator:
         return ev * player_multiplier
     
     def _estimate_dealer_bust_probability(self, upcard: Card) -> float:
-        """Estimate dealer bust probability based on upcard"""
+        """
+        Estimate dealer bust probability based on upcard
+        
+        Note: These are approximate probabilities derived from standard blackjack
+        analysis assuming dealer hits to 17. They provide a reasonable heuristic
+        for this variant, though the custom Ace rules may affect actual probabilities.
+        """
         # These are approximate probabilities based on basic strategy analysis
         bust_probs = {
             'A': 0.12,
