@@ -48,3 +48,16 @@ The executable is generated at:
 ```text
 dist\BlackjackSolver.exe
 ```
+
+## Automated Windows release workflow
+
+A tiny GitHub Actions workflow is included at:
+
+```text
+.github/workflows/windows-release.yml
+```
+
+It:
+- builds `dist/BlackjackSolver.exe` on `windows-latest`
+- uploads it as a workflow artifact
+- publishes it to a GitHub Release when pushing a tag like `v1.0.0`
