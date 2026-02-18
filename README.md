@@ -37,13 +37,35 @@ cd BlackjackSolver
 
 ## Usage
 
-### Run the Solver
+### Interactive Mode (Recommended)
+
+Run the interactive solver to analyze your own hands:
+
+```bash
+python interactive_solver.py
+```
+
+This will prompt you to enter your cards and the dealer's upcard, then provide optimal strategy recommendations.
+
+Example session:
+```
+Your cards: KS 6H
+Dealer's card: 10C
+
+OPTIMAL ACTION: HIT
+Expected Value (Stand): -0.5803
+Expected Value (Hit): -0.5404
+```
+
+### Demo Mode
+
+Run the solver with example hands:
 
 ```bash
 python solver.py
 ```
 
-This will display optimal strategies for several example hands.
+This will display optimal strategies for several example hands including special hands like Ban Ban, Blackjack, Triple 7s, and more.
 
 ### Use as a Module
 
