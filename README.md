@@ -34,3 +34,17 @@ python solver.py
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+## Build all-in-one Windows `.exe`
+
+From Windows command prompt:
+
+```bat
+build_exe.bat
+```
+
+The executable is generated at:
+
+```text
+dist\BlackjackSolver.exe
+```
