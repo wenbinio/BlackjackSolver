@@ -166,6 +166,15 @@ The algorithm assumes optimal play from the dealer and calculates probabilities 
 
 MIT License - See LICENSE file for details
 
+## Examples
+
+See [EXAMPLES.md](EXAMPLES.md) for detailed usage examples including:
+- Basic usage patterns
+- All special hands (Ban Ban, Blackjack, Triple 7s, 5-Card Charlie)
+- Custom Ace valuation examples
+- Interactive mode examples
+- Common game scenarios
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
